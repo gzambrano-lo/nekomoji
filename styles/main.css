@@ -790,9 +790,32 @@ h2 {
   }
 
   .footer-badge {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     padding: 16px;
+    gap: 12px;
+  }
+
+  .footer-badge-image {
+    width: 88px;
+    height: 31px;
+  }
+
+  .footer-badge-copy {
+    min-width: 0;
+    flex: 1 1 220px;
+  }
+
+  .footer-badge-copy strong {
+    font-size: 1.05rem;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .footer-badge-copy span:last-child {
+    font-size: 0.9rem;
   }
 
   .coming-card {
