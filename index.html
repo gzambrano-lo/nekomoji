@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nekomoji</title>
+  <meta
+    name="description"
+    content="A soft pastel kaomoji library with searchable moods and one-click copy."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar" id="top">
+      <a class="brand" href="index.html" aria-label="Nekomoji home">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="brand-icon" src="assets/logo.svg" alt="">
+        </span>
+        <span class="brand-copy">
+          <strong>nekomoji</strong>
+          <span>reaction library</span>
+        </span>
+      </a>
+
+      <nav class="topbar-links" aria-label="Primary">
+        <a class="topbar-link topbar-link-active" href="index.html">kaomoji</a>
+        <button class="topbar-link" id="open-submit-modal" type="button">submit</button>
+        <a class="topbar-link" href="upload.html">upload</a>
+      </nav>
+    </header>
+
+    <main class="library-page" id="library">
+      <section class="hero-copy">
+        <p class="eyebrow">click any kaomoji to copy it instantly ♡</p>
+        <h1>kaomoji library</h1>
+      </section>
+
+      <section class="library-toolbar" aria-label="Library controls">
+        <label class="search-field" for="kaomoji-search">
+          <span class="sr-only">Search kaomoji</span>
+          <input
+            id="kaomoji-search"
+            type="search"
+            placeholder="search by emotion or keyword..."
+            autocomplete="off"
+          >
+        </label>
+        <div class="category-pills" id="category-pills" aria-label="Mood filters"></div>
+        <p class="library-total" id="library-total" aria-live="polite"></p>
+      </section>
+
+      <section class="gallery-grid" id="kaomoji-grid" aria-live="polite"></section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="footer-badge" href="mailto:Itzalcontent@gmail.com" aria-label="Contact Lupita Zambrano by email">
+        <img
+          class="footer-badge-image"
+          src="assets/lupita_z_88x31.gif"
+          alt="Lupita Zambrano badge"
+          width="88"
+          height="31"
+        >
+        <span class="footer-badge-copy">
+          <span class="footer-badge-kicker">website built by</span>
+          <strong>lupita zambrano (˶˃ ᵕ ˂˶)</strong>
+          <span>design + code</span>
+        </span>
+      </a>
+    </footer>
+  </div>
+
+  <div class="modal-shell" id="submit-modal" hidden>
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <section
+      class="submit-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="submit-modal-title"
+    >
+      <button class="modal-close" id="close-submit-modal" type="button" aria-label="Close submit form">
+        ×
+      </button>
+
+      <div class="modal-copy">
+        <p class="modal-eyebrow">community submissions</p>
+        <h2 id="submit-modal-title">Submit a kaomoji</h2>
+        <p class="modal-text">
+          Suggestions are saved as pending for moderation before they appear in the public library.
+        </p>
+      </div>
+
+      <form class="submit-form" id="submit-form" novalidate>
+        <label class="form-field">
+          <span>Kaomoji</span>
+          <input
+            id="submit-face"
+            name="face"
+            type="text"
+            maxlength="80"
+            placeholder="(＾▽＾)"
+            required
+          >
+        </label>
+
+        <label class="form-field">
+          <span>Mood</span>
+          <select id="submit-mood" name="mood" required>
+            <option value="">Choose a mood</option>
+          </select>
+        </label>
+
+        <label class="form-field">
+          <span>Tags</span>
+          <input
+            id="submit-tags"
+            name="tags"
+            type="text"
+            maxlength="120"
+            placeholder="cute, happy, sparkly"
+          >
+        </label>
+
+        <label class="form-field">
+          <span>Note</span>
+          <textarea
+            id="submit-note"
+            name="note"
+            rows="4"
+            maxlength="280"
+            placeholder="Optional context, source, or why this one should be added."
+          ></textarea>
+        </label>
+
+        <div class="form-turnstile">
+          <span>Human check</span>
+          <div
+            class="cf-turnstile"
+            data-sitekey="0x4AAAAAAC0plHa6tVq77xcn"
+            data-theme="light"
+            data-size="flexible"
+          ></div>
+          <p>Turnstile is now enabled on the submit form.</p>
+        </div>
+
+        <p class="form-feedback" id="submit-feedback" aria-live="polite"></p>
+
+        <div class="form-actions">
+          <button class="button-secondary modal-button" id="cancel-submit-modal" type="button">Cancel</button>
+          <button class="button-primary modal-button" id="submit-form-button" type="submit">Send for review</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>
