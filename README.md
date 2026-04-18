@@ -1,11 +1,11 @@
-# Nekomoji   (◕‿◕✿)
+# Nekomoji ・ (◕‿◕✿)
 
 > A soft, airy kaomoji reference — browse, search, and copy in one click.
 
 ![License](https://img.shields.io/badge/license-MIT-pink)
 ![Status](https://img.shields.io/badge/status-active-teal)
 
-[Live Site](#) · [Report a Bug](#) · [Request a Kaomoji](#)
+[Live Site](https://nekomoji.com/)
 
 ---
 
@@ -15,16 +15,14 @@ Nekomoji is a lightweight kaomoji reference site with a soft, pastel interface.
 Find the right kaomoji fast — browse by category, search by mood, and copy to
 clipboard instantly.
 
-<!-- Add a screenshot here! -->
-
 ---
 
 ## Features
 
 - (◍•ᴗ•◍) Browse kaomoji by category and mood
 - (っ◔◡◔)っ Search instantly as you type
-- ♡ Copy to clipboard with a single click
-- No dependencies — plain HTML, CSS, and JavaScript
+- Copy to clipboard with a single click
+- No dependencies! Plain HTML, CSS, and JavaScript
 - Soft pastel visual system, fully responsive
 
 ---
@@ -32,12 +30,12 @@ clipboard instantly.
 ## Getting started
 
 No build step needed. Just clone and open:
-
-```bash
+```
+bash
 git clone https://github.com/gzambrano-lo/nekomoji.git
 cd nekomoji
 open index.html
-` ` `
+```
 
 ---
 
@@ -52,8 +50,19 @@ nekomoji/
 ├── scripts/
 │   └── app.js      # Searchable kaomoji dataset + logic
 └── assets/         # Images and static files
+```
+
+---
 
 ## Contributing
 
-I'm a college student building this in my spare time, so submissions are 
-on pause for now. Sit tight — kaomoji acceptance is coming soon! (っ◔◡◔)っ ♡
+I'm a college student building this in my spare time, so submissions are
+on pause for now. Sit tight — kaomoji acceptance is coming soon!
+
+Interested in collaborating? [Find me on GitHub](https://github.com/gzambrano-lo) (◕‿◕✿)
+
+---
+
+## License
+
+MIT — see [LICENSE](./LICENSE) for details.
