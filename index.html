@@ -142,6 +142,7 @@
         <div class="form-turnstile">
           <span>Human check</span>
           <div
+            id="submit-turnstile"
             class="cf-turnstile"
             data-sitekey="0x4AAAAAAC0plHa6tVq77xcn"
             data-theme="light"
@@ -160,7 +161,7 @@
     </section>
   </div>
 
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script src="scripts/app.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad" async defer></script>
 </body>
 </html>

@@ -67,7 +67,10 @@ const submitTagsInput = document.querySelector("#submit-tags");
 const submitNoteInput = document.querySelector("#submit-note");
 const submitFeedback = document.querySelector("#submit-feedback");
 const submitFormButton = document.querySelector("#submit-form-button");
+const turnstileContainer = document.querySelector("#submit-turnstile");
 const turnstileInputSelector = "[name='cf-turnstile-response']";
+const turnstileSiteKey = "0x4AAAAAAC0plHa6tVq77xcn";
+let turnstileWidgetId = null;
 
 const preferredOrder = [
   "all",
@@ -205,9 +208,47 @@ function renderGrid() {
 
 searchInput.addEventListener("input", renderGrid);
 
+function resetTurnstile() {
+  if (window.turnstile && turnstileWidgetId !== null) {
+    window.turnstile.reset(turnstileWidgetId);
+  }
+}
+
+function renderTurnstile() {
+  if (!window.turnstile || !turnstileContainer) {
+    return;
+  }
+
+  if (turnstileWidgetId === null) {
+    turnstileWidgetId = window.turnstile.render(turnstileContainer, {
+      sitekey: turnstileSiteKey,
+      theme: "light",
+      size: "flexible",
+    });
+    return;
+  }
+
+  resetTurnstile();
+}
+
+function getTurnstileToken() {
+  if (window.turnstile && turnstileWidgetId !== null) {
+    return window.turnstile.getResponse(turnstileWidgetId).trim();
+  }
+
+  return document.querySelector(turnstileInputSelector)?.value?.trim() || "";
+}
+
+window.onTurnstileLoad = () => {
+  if (!submitModal.hidden) {
+    renderTurnstile();
+  }
+};
+
 function openSubmitModal() {
   submitModal.hidden = false;
   document.body.style.overflow = "hidden";
+  renderTurnstile();
   submitFaceInput.focus();
 }
 
@@ -216,10 +257,7 @@ function closeSubmitModal() {
   document.body.style.overflow = "";
   submitForm.reset();
   clearFeedback();
-
-  if (window.turnstile) {
-    window.turnstile.reset();
-  }
+  resetTurnstile();
 }
 
 function setFeedback(message, state = "") {
@@ -244,7 +282,7 @@ function isDuplicateFace(face) {
 }
 
 function validateSubmission(payload) {
-  const turnstileToken = document.querySelector(turnstileInputSelector)?.value?.trim();
+  const turnstileToken = getTurnstileToken();
 
   if (!payload.face) {
     return "Enter a kaomoji first.";
@@ -270,7 +308,7 @@ function validateSubmission(payload) {
 }
 
 async function submitKaomojiSuggestion(payload) {
-  const turnstileToken = document.querySelector(turnstileInputSelector)?.value?.trim();
+  const turnstileToken = getTurnstileToken();
 
   const response = await fetch(
     "https://nekomoji-submissions.gzamlo98.workers.dev/api/submissions",
@@ -281,6 +319,7 @@ async function submitKaomojiSuggestion(payload) {
       },
       body: JSON.stringify({
         ...payload,
+        turnstileToken,
         "cf-turnstile-response": turnstileToken,
       }),
     }
@@ -317,17 +356,14 @@ async function handleSubmit(event) {
   submitFormButton.textContent = "Sending...";
 
   try {
-    const response = await submitKaomojiSuggestion(payload);
-    if (!response.ok) {
-      throw new Error("Request failed");
-    }
-
+    await submitKaomojiSuggestion(payload);
     setFeedback("Submission received. It is now pending moderation.", "success");
     window.setTimeout(() => {
       closeSubmitModal();
     }, 900);
   } catch (error) {
     setFeedback(error.message || "Submission failed.", "error");
+    resetTurnstile();
   } finally {
     submitFormButton.disabled = false;
     submitFormButton.textContent = "Send for review";
