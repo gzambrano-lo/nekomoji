@@ -1,15 +1,68 @@
-# Nekomoji
+# Nekomoji ・ (◕‿◕✿)
 
-Nekomoji is a lightweight kaomoji reference site with a soft, airy interface.
+> A soft, airy kaomoji reference — browse, search, and copy in one click.
 
-## Initial scaffold
+![License](https://img.shields.io/badge/license-MIT-pink)
+![Status](https://img.shields.io/badge/status-active-teal)
 
-- `index.html` contains the landing page, library section, and the first-pass site structure.
-- `styles/main.css` defines the quiet pastel visual system and responsive layout.
-- `scripts/app.js` provides a simple searchable kaomoji dataset so the homepage behaves like a real reference immediately.
+[Live Site](https://nekomoji.com/)
 
-## Why start this way
+---
 
-- The homepage is the product, so the first scaffold focuses on browsing and finding kaomoji quickly.
-- The data is plain JavaScript for now, which keeps the project easy to reshape before choosing a framework.
-- Categories, tags, and card-based entries establish a clean path toward copy actions, detail pages, and larger datasets.
+## What is Nekomoji?
+
+Nekomoji is a lightweight kaomoji reference site with a soft, pastel interface.
+Find the right kaomoji fast — browse by category, search by mood, and copy to
+clipboard instantly.
+
+---
+
+## Features
+
+- (◍•ᴗ•◍) Browse kaomoji by category and mood
+- (っ◔◡◔)っ Search instantly as you type
+- Copy to clipboard with a single click
+- No dependencies! Plain HTML, CSS, and JavaScript
+- Soft pastel visual system, fully responsive
+
+---
+
+## Getting started
+
+No build step needed. Just clone and open:
+```
+bash
+git clone https://github.com/gzambrano-lo/nekomoji.git
+cd nekomoji
+open index.html
+```
+
+---
+
+## Project structure
+
+```
+nekomoji/
+├── index.html      # Landing page and library browser
+├── upload.html     # Submit new kaomoji
+├── styles/
+│   └── main.css    # Pastel visual system, responsive layout
+├── scripts/
+│   └── app.js      # Searchable kaomoji dataset + logic
+└── assets/         # Images and static files
+```
+
+---
+
+## Contributing
+
+I'm a college student building this in my spare time, so submissions are
+on pause for now. Sit tight — kaomoji acceptance is coming soon!
+
+Interested in collaborating? [Find me on GitHub](https://github.com/gzambrano-lo) (◕‿◕✿)
+
+---
+
+## License
+
+MIT — see [LICENSE](./LICENSE) for details.
