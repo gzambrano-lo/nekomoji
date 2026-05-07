@@ -339,7 +339,7 @@ async function handleSubmit(event) {
   }
 }
 
-openSubmitModalButton.addEventListener("click", openSubmitModal);
+openSubmitModalButton?.addEventListener("click", openSubmitModal);
 closeSubmitModalButton.addEventListener("click", closeSubmitModal);
 cancelSubmitModalButton.addEventListener("click", closeSubmitModal);
 submitModal.addEventListener("click", (event) => {
